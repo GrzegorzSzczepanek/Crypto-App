@@ -1,4 +1,5 @@
 import requests
+# beta features of coingecko are unincluded
 
 
 def interpret_status_code(response: dict) -> dict:
@@ -129,7 +130,73 @@ def get_exchange_by_id(id: str) -> dict:
     return interpret_status_code(response)
 
 
-def get_exchange_list() -> dict:
+def get_exchanges_list() -> dict:
     """Get exchange rates."""
-    response = requests.get("https://api.coingecko.com/api/v3/exchange/list")
+    response = requests.get("https://api.coingecko.com/api/v3/exchanges/list")
+    return interpret_status_code(response)
+
+
+def get_exchanges_tickers_by_id(id: str) -> dict:
+    """Get exchange tickers by id."""
+    response = requests.get(f"https://api.coingecko.com/api/v3/exchanges/{id}/tickers")
+    return interpret_status_code(response)
+
+
+def get_exchanges_volume_by_id(id: str) -> dict:
+    """Get exchange volume by id."""
+    response = requests.get(f"https://api.coingecko.com/api/v3/exchanges/{id}/volume_chart")
+    return interpret_status_code(response)
+
+
+def get_derivatives() -> dict:
+    """Get all derivatives tickers"""
+    response = requests.get("https://api.coingecko.com/api/v3/derivatives")
+    return interpret_status_code(response)
+
+
+def get_derivatices_exchanges() -> dict:
+    """Get all derivatives exchanges"""
+    response = requests.get("https://api.coingecko.com/api/v3/derivatives/exchanges")
+    return interpret_status_code(response)
+
+
+def get_derivatives_exchange_by_id(id: str) -> dict:
+    """Get derivatives exchange by id."""
+    response = requests.get(f"https://api.coingecko.com/api/v3/derivatives/exchanges/{id}")
+    return interpret_status_code(response)
+
+
+def get_derivatives_exchange_list() -> dict:
+    """Get derivatives exchange list."""
+    response = requests.get("https://api.coingecko.com/api/v3/derivatives/exchanges/list")
+    return interpret_status_code(response)
+
+
+def get_exchange_rates() -> dict:
+    """Get exchange rates."""
+    response = requests.get("https://api.coingecko.com/api/v3/exchange_rates")
+    return interpret_status_code(response)
+
+
+def search(query: str) -> dict:
+    """Search for coins, categories and markets on CoinGecko."""
+    response = requests.get(f"https://api.coingecko.com/api/v3/search?query={query}")
+    return interpret_status_code(response)
+
+
+def search_trending() -> dict:
+    """Get trending search coins (Top-7) on CoinGecko in the last 24 hours"""
+    response = requests.get("https://api.coingecko.com/api/v3/search/trending")
+    return interpret_status_code(response)
+
+
+def get_global_data() -> dict:
+    """Get global data."""
+    response = requests.get("https://api.coingecko.com/api/v3/global")
+    return interpret_status_code(response)
+
+
+def get_global_defi_data() -> dict:
+    """Get global defi data."""
+    response = requests.get("https://api.coingecko.com/api/v3/global/decentralized_finance_defi")
     return interpret_status_code(response)
