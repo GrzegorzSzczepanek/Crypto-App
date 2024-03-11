@@ -1,6 +1,17 @@
 # from modules.test import StopwatchApp
 import modules.data_collection as dc
 from TUI_Widgets import coin_ranking as ci
+import requests
+
+
+def make_request(url: str, params: dict = None) -> dict:
+    """Make a GET request to the specified URL and interpret the response."""
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return None
+
 
 if __name__ == "__main__":
     params = {
@@ -10,9 +21,8 @@ if __name__ == "__main__":
         'per_page': 2,  # Total results per page
         'page': 1,  # Page through results
         'sparkline': False,  # Include sparkline 7 days data
-        'price_change_percentage': ['1h', '24h', '7d']  # Include price change percentage in 24h
+        'price_change_percentage': '24h'  # Include price change percentage in 24h
     }
-    print(dc.get_coins_markets(params))
 
-    # app = ci.CoinRankingWidget()
-    # app.run()
+    app = ci.CoinRankingApp()
+    app.run()

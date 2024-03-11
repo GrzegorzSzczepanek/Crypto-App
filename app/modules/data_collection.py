@@ -14,7 +14,7 @@ def make_request(url: str, params: dict = None) -> dict:
 def ping_coin_gecko(params: dict = None) -> None:
     """Ping CoinGecko API."""
     url = "https://api.coingecko.com/api/v3/ping"
-    print(make_request(url, params))
+    return make_request(url, params)
 
 
 def get_all_token_info_by_id(id: str, params: dict = None) -> dict:
