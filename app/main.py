@@ -14,15 +14,18 @@ def make_request(url: str, params: dict = None) -> dict:
 
 
 if __name__ == "__main__":
-    params = {
-        'vs_currency': 'usd',  # The target currency of market data
-        # 'ids': 'bitcoin',  # The ids of the coin, comma-separated cryptocurrency symbols
-        'order': 'market_cap_desc',  # Sort results by market cap in descending order
-        'per_page': 2,  # Total results per page
-        'page': 1,  # Page through results
-        'sparkline': False,  # Include sparkline 7 days data
-        'price_change_percentage': '24h'  # Include price change percentage in 24h
-    }
+    # params = {
+    #     'vs_currency': 'usd',  # The target currency of market data
+    #     # 'ids': 'bitcoin',  # The ids of the coin, comma-separated cryptocurrency symbols
+    #     'order': 'market_cap_desc',  # Sort results by market cap in descending order
+    #     'per_page': 2,  # Total results per page
+    #     'page': 1,  # Page through results
+    #     'sparkline': False,  # Include sparkline 7 days data
+    #     'price_change_percentage': '24h'  # Include price change percentage in 24h
+    # }
 
     app = ci.CoinRankingApp()
     app.run()
+
+    # coin_class = Coins(params)
+    # coin_class.sort_by_param('current_price')

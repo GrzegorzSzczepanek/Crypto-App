@@ -41,6 +41,17 @@ class CoinInfo(Static):
         yield Static(f"{self.market_cap_rank}, {self.symbol}, {self.coin_name}, {self.price}, {self.one_day_change}, {self.last_day_volume}", id="coin_info")
 
 
+class Coins:
+    def __init__(self, params=None):
+        self.coins = dc.get_coins_markets(params)
+        print(self.coins)
+
+    def sort_by_param(self, param):
+        self.sorted_data = sorted(self.coins, key=lambda x: x[param])
+        print(self.sorted_data)
+
+
+# TODO add sorting functions for each button
 class CoinRankingApp(App):
     """A Textual app to manage coin rankings."""
     BINDINGS = [
@@ -60,11 +71,11 @@ class CoinRankingApp(App):
             'price_change_percentage': '24h'  # Include price change percentage in 24h
         }
 
-        coins = dc.get_coins_markets(params)
+        coins = Coins(params)
         yield CoinRankingHeader(id="header")
         yield Header()
         yield Footer()
-        for coin in coins:
+        for coin in coins.coins:
             yield CoinInfo(market_cap_rank=coin['market_cap_rank'],
                            symbol=coin['symbol'],
                            name=coin['name'],
